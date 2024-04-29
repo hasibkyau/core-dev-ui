@@ -8,15 +8,19 @@ import React from 'react';
  * @returns The proper button with specified params.
  */
 export default function Btn({
+  handleSubmit,
   type = 'button',
   className = 'bg-secondary',
   children = 'button',
   disabled = false,
-  onClick = () => { },
+  data = [],
+  onClick = () => {
+    console.log('data',data);
+   },
 }) {
   return (
     <button
-      onClick={onClick}
+      onClick={handleSubmit}
       disabled={disabled}
       type={type}
       className={`bg-primary rounded-[3.125rem] py-3 px-2.5 w-full text-base text-textHeader font-semibold ${className}`}

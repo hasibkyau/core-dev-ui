@@ -7,7 +7,10 @@ import Order from './Order'
 export function Checkout() {
     const { register, handleSubmit } = useForm();
     const { getPayment } = useGlobalCtx();
-    const onSubmit = (data) => getPayment(data);
+    const onSubmit = (data) => {
+        console.log('onSubmit',data);
+        getPayment(data)
+    } ;
     return (
         <form onSubmit={handleSubmit(onSubmit())}>
             <div className="grid grid-cols-12 gap-x-8 py-12">
@@ -15,7 +18,7 @@ export function Checkout() {
                     <Contact register={register} />
                 </div>
                 <div className="col-span-5 ">
-                    <Order />
+                    <Order getTotalPrice={onSubmit}/>
                 </div>
             </div>
         </form>

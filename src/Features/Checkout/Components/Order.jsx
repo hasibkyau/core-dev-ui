@@ -5,7 +5,7 @@ import { useGlobalCtx } from '../../../Contexts/GlobalProvider';
 import { TbRow } from './Handler'
 
 const CartProducts = [{ id: 1, product: 'External SSD USB 3.1 750 GB', price: '1' }, { id: 2, product: 'External SSD USB 2.1 150 GB', price: '1' }];
-export default function Order() {
+export default function Order({getTotalPrice}) {
     const { open, setTotalPrice, totalPrice } = useGlobalCtx();
     const total = CartProducts.reduce(
         (accumulator, currentValue) => Number(accumulator) + Number(currentValue.price),
@@ -14,6 +14,11 @@ export default function Order() {
     useEffect(() => {
         setTotalPrice(total + 1);
     }, []);
+
+    const submitOrder = () => {
+        getTotalPrice(total);
+    }
+
     return (
         <div>
             <div className="border border-border border-opacity-5 rounded-[0.5rem] py-4 px-5">
@@ -49,7 +54,7 @@ export default function Order() {
                     <p className="text-black text-base font-normal">Estimated Total</p>
                     <p className="font-bold text-xl text-textHeader">৳ {totalPrice} TK </p>
                 </div>
-                <Btn>Continue to Payment</Btn>
+                <Btn handleSubmit={submitOrder}>Continue to Payment</Btn>
                 {open ? <PaymentMd /> : ""}
             </div>
         </div >
