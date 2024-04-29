@@ -11,11 +11,11 @@ export default function Contact({ register }) {
                 <h1 className="text-textHeader font-medium text-lg">Contact Information</h1>
                 <div className="space-y-2 ">
                     <Label title={"Email Address"} />
-                    <Input placeholder="Email ...." name="email" register={{ ...register('email') }} />
+                    <Input placeholder="Email ...." name="email" register={{ ...register('email'), required:'email number is required' }} />
                 </div>
                 <div className="space-y-2 relative">
                     <Label title={"Phone Number"} />
-                    <Input placeholder="Phone number ...." className="pl-32" type="number" register={{ ...register('phone') }} />
+                    <Input placeholder="Phone number ...." className="pl-32" type="number" register={{ ...register('phone'), required:'phone number is required' }} />
                     <DropDown />
                 </div>
                 <div className="space-y-2 relative">
